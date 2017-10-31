@@ -18,7 +18,7 @@ def load(image_path):
 
     ### YOUR CODE HERE
     # Use skimage io.imread
-    pass
+    out=io.imread(image_path)
     ### END YOUR CODE
 
     return out
@@ -36,12 +36,13 @@ def change_value(image):
     """
 
     out = None
-
-    ### YOUR CODE HERE
-    pass
+    out=np.zeros_like(image)
+    #out=image[:,:,:]
+    out=0.5*(image*image)
+   
     ### END YOUR CODE
-
-    return out
+   
+    return out.astype('uint8')
 
 
 def convert_to_grey_scale(image):
@@ -56,7 +57,7 @@ def convert_to_grey_scale(image):
     out = None
 
     ### YOUR CODE HERE
-    pass
+    out=color.rgb2gray(image)
     ### END YOUR CODE
 
     return out
@@ -73,12 +74,18 @@ def rgb_decomposition(image, channel):
     """
 
     out = None
-
+    
     ### YOUR CODE HERE
-    pass
+    out=image.copy()
+    if channel=='R':
+        out[:,:,0]=255
+    if channel=='G':
+        out[:,:,1]=255
+    if channel=='B':
+        out[:,:,2]=255
     ### END YOUR CODE
 
-    return out
+    return out.astype('uint8')
 
 def lab_decomposition(image, channel):
     """ Return image decomposed to just the lab channel specified
@@ -95,9 +102,14 @@ def lab_decomposition(image, channel):
     out = None
 
     ### YOUR CODE HERE
-    pass
+    if channel=='L':
+        lab[:,:,0]=0
+    if channel=='A':
+        lab[:,:,1]=0
+    if channel=='B':
+        lab[:,:,2]=0
     ### END YOUR CODE
-
+    out=color.lab2rgb(lab)
     return out
 
 def hsv_decomposition(image, channel='H'):

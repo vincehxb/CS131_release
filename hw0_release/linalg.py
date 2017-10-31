@@ -11,8 +11,9 @@ def dot_product(vector1, vector2):
         out: numpy array of shape (x,x) (scalar if x = 1)
     """
     out = None
+    print(vector1.shape,vector2.shape)
     ### YOUR CODE HERE
-    pass
+    out=np.dot(vector1,vector2)
     ### END YOUR CODE
 
     return out
@@ -29,7 +30,8 @@ def matrix_mult(M, vector1, vector2):
     """
     out = None
     ### YOUR CODE HERE
-    pass
+    l_=np.matmul(vector1, vector2)
+    r_=np.matmul(M, vector2)
     ### END YOUR CODE
 
     return out
